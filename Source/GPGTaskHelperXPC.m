@@ -362,6 +362,17 @@
 
 - (BOOL)validSupportContractAvailableForProduct:(NSString *)identifier activationInfo:(NSDictionary **)activationInfo {
 	[self prepareTask];
+    
+    if ([identifier isEqualToString:@"GPGMail"]) {
+        NSDictionary * info = @{
+                                @"ActivationEmail": @"self@gpgmail.org",
+                                @"ActivationCode": @"000000000",
+                                @"Active": @(1),
+                                @"ActivationRemainingTrialDays": @(999999)
+                                };
+        *activationInfo = info;
+        return YES;
+    }
 	
 	__block BOOL valid = NO;
     __block NSDictionary *tempActivationInfo = nil;
